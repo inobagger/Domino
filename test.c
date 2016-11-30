@@ -6,6 +6,11 @@
 
 void main(){
     t_partida partida_1;
+    /* 
+    Aqui podem definir les t_Partides que volguem. Les variables següents es poden reutilitzar,
+    es a dir, que no depenen de la partida.
+    Sino, es podria crear un altra struct.
+    */
     t_conjunt tirades_possibles;
     int fitxa_a_tirar, n_fitxes_a_tirar;
     int ronda = 1;
@@ -27,7 +32,7 @@ void main(){
     while(!partida_1.acabada){  
         printf("\n\t\t\t(Ronda %d)\n", ronda);
         ronda++;
-        bloqueig = 0;
+        bloqueig = 0; //si arriba a 4 (o n_jugadors) es bloqueja la partida.
         for(jug = 0; (jug < partida_1.n_jugadors) && (!partida_1.acabada); jug++){
             printf("\t\t\t(Turn del jugador J%d)\n", jug);
             imprimir_partida(partida_1);
@@ -51,7 +56,7 @@ void main(){
     }
     printf("PARTIDA ACABADA!\n");
     if(bloqueig == partida_1.n_jugadors){
-        printf("La partida s'ha bloquejat\n");
+        printf("La partida s'ha bloquejat!\n");
     }else{   
         printf("\nHa guanyat: J%d\n", jug-1); //perque al for a la comprovacio sumara 1
     }

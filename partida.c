@@ -70,7 +70,7 @@ void tirar_primera_fitxa(t_partida *partida){
 	//El bucle es trenca quan ja sha trobat un jugador amb un maxim o quan ningu te dobles
 	
 	if(max.n1 == -1 && max.n2 == -1){ //si ningu te dobles
-		printf("No hi ha cap doble a tirar! :O\n");
+		printf("No hi ha cap doble a tirar! No es problema del programa, son lesnormes del Domino! :O\n");
 		scanf("*c");
 		//???
 	}else{
