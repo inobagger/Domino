@@ -24,7 +24,12 @@ void imprimir_partida(t_partida partida){
 	}
 	printf("\n");
 	printf("Taula: ");
-	print_conjunt(partida.taula); //Imprimeix la taula (fitxes del mig)
+	if(partida.imprimir_2d){ //S'imprimeix la taula en 2 dimensions.
+		printf("\n"); //per posar "Taula" adalt de la pila i que no quedi moguda.
+		print_conjunt_2d(partida.taula);
+	}else{
+		print_conjunt(partida.taula); //Imprimeix la taula (fitxes del mig)
+	}
 	printf("\n\n");
 
 	

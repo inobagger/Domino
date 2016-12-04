@@ -3,6 +3,7 @@
 
 #define N 28
 #define MAX_N 6
+#define MAX_CHAR 112
 
 typedef struct { //estructura d'una fitxa
 	int n1; //a la posicio default i horitzontal es l'esquerra
@@ -18,6 +19,7 @@ typedef struct { //estructura d'un cojunt o grup de fitxes
 void print_fitxa(t_fitxa f);
 void print_conjunt(t_conjunt c);
 void print_conjunt_secret(t_conjunt c);
+void print_conjunt_2d(t_conjunt c);
 void print_conjunt_tirades(t_conjunt c);
 t_conjunt generar_fitxes();
 void afegir_fitxa_final(t_conjunt *c, t_fitxa f);

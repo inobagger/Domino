@@ -29,6 +29,56 @@ void print_conjunt_secret(t_conjunt c){
 		printf("?:?|");
 	}
 }
+
+void print_conjunt_2d(t_conjunt c){
+	int n_caracters;
+	int caracters_totals;
+	char linees[3][MAX_CHAR];
+	int i, j;
+	for(j=0; j < 3; j++){ //Per a cada una de les 3 linees
+		n_caracters = 0; //el n de caracters de cada linea comença a 0
+		for(i=0; i < c.n_fitxes; i++){ //Per a cada fitxa
+			if(c.fitxes[i].n1 == c.fitxes[i].n2){ //Si es un doble
+				if(j%2 == 0){ //linea 0 o 2
+					linees[j][n_caracters++] = c.fitxes[i].n1 + '0';
+					linees[j][n_caracters++] = '|';
+				}else{ //linea 1
+					linees[j][n_caracters++] = '-';
+					linees[j][n_caracters++] = '|';
+				}
+			}else{ //Si no es cap doble
+				if(j == 0){ //linea 0, afegim la cadena "___ " que es posa sobre la fitxa
+					linees[j][n_caracters++] = '_';
+					linees[j][n_caracters++] = '_';
+					linees[j][n_caracters++] = '_';
+					linees[j][n_caracters++] = ' ';
+				}else if(j == 1){ //linea 1, afegim la fitxa en si
+					linees[j][n_caracters++] = c.fitxes[i].n1 + '0';
+					linees[j][n_caracters++] = ':';
+					linees[j][n_caracters++] = c.fitxes[i].n2 + '0';
+					linees[j][n_caracters++] = '|';
+				}else{ //linea 2, afegim nomes espais
+					linees[j][n_caracters++] = ' ';
+					linees[j][n_caracters++] = ' ';
+					linees[j][n_caracters++] = ' ';
+					linees[j][n_caracters++] = ' ';
+				}
+			}
+		}
+		if(j == 1){ //Els caracters totals seran els que hi ha a la segona linea
+			caracters_totals = n_caracters;
+		}
+	}
+
+	//Imprimim la matriu generada
+	for(i=0; i < 3; i++){
+		for(j=0; j < caracters_totals; j++){
+			printf("%c", linees[i][j]);
+		}
+		printf("\n");
+	}
+}
+
 void print_fitxa(t_fitxa f) { //Imprimeix una fitxa
 	printf("%d:%d|", f.n1, f.n2);
 }
