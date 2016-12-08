@@ -9,6 +9,7 @@ typedef struct{
 	int n_jugadors;
 	int jugador_huma;
 	int omnipresencia;
+    int imprimir_2d;
     int acabada; //0 si la partida no ha acabat, 1 si ha acabat
 	t_conjunt pila_central; //pila de fitxes central
     t_conjunt taula; //pila on es juguen les fitxes
