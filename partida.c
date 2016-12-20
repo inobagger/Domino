@@ -185,3 +185,29 @@ int no_puc_tirar(t_partida *partida, int jugador){
 		return 1;
 	}
 }
+
+int sumar_punts(t_conjunt fitxes_jugador){
+	int i;
+	int sum = 0;
+	for(i=0; i < fitxes_jugador.n_fitxes; i++){
+		sum += fitxes_jugador.fitxes[i].n1;
+		sum += fitxes_jugador.fitxes[i].n2;
+	}
+	return sum;
+}
+
+void partida_bloquejada(t_partida partida){
+	int i, min;
+	for(i=0; i < partida.n_jugadors; i++){ //imprimim la taula de puntuacio i alhora busquem el jugador que te menys punts
+		printf_color(5);
+		printf("J%d: ", i);
+		printf_color(2);
+		printf("%d punts\n", sumar_punts(partida.conjunts_jug[i]));
+		printf_color(-1);
+		if(i==0 || sumar_punts(partida.conjunts_jug[i]) < sumar_punts(partida.conjunts_jug[min]))
+			min = i;
+	}
+	printf_color(5);
+	printf("Ha guanyat el J%d!\n", min);
+	printf_color(-1);
+}

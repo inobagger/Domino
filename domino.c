@@ -75,17 +75,17 @@ void main(){
 			jugador_actual = 0; //Ara sempre començarem pel jugador 0
 		}
 	}
-	printf_color(5);
+	printf_color(1);
 	printf("PARTIDA ACABADA!\n");
 	printf_color(-1);
 	if(bloqueig == partida_1.n_jugadors){
 		printf_color(5);
-		printf("La partida s'ha bloquejat.\n"); //a la fase d'extras posarem que conti quin jugador te menys fitxes per saber el guanyador "parcial"
+		printf("La partida s'ha bloquejat. Aquesta es la taula de punts: \n"); //a la fase d'extras posarem que conti quin jugador te menys fitxes per saber el guanyador "parcial"
 		printf_color(-1);
-
+		partida_bloquejada(partida_1);
 	}else{
 		printf_color(5);
-		printf("\nHa guanyat: J%d\n", jug-1); //perque al for a la comprovacio sumara 1
+		printf("\nHa guanyat el J%d!\n", jug-1); //perque al for a la comprovacio sumara 1
 		printf_color(-1);
 	}
 }
