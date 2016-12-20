@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "fitxes.h"
 #include "azar.h"
+#include "colores.h"
 
 t_conjunt generar_fitxes(){ /*Funció que genera les 28 fitxes del domino*/
 	int i, j, nf;
@@ -168,12 +169,15 @@ t_conjunt retornar_tirades_possibles(t_conjunt c, t_conjunt taula){
 
 void print_conjunt_tirades(t_conjunt c){
 	int i = 0;
+	printf_color(5);
 	printf("Tirades possibles: ");
+	printf_color(2);
 	for(i=0; i < c.n_fitxes; i++){
 		printf("%d(%c", i, c.fitxes[i].p);
 		print_fitxa(c.fitxes[i]);
 		printf(") ");
 	}
+	printf_color(-1);
 	printf("\n");
 }
 

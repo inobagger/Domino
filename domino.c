@@ -5,6 +5,7 @@
 #include "partida.h"
 #include "bots.h"
 #include "duerme.h"
+#include "colores.h"
 
 void main(){
 	t_partida partida_1;
@@ -35,25 +36,31 @@ void main(){
 	//comencem a jugar
 	while(!partida_1.acabada){
 		duerme_un_rato();
+		printf_color(3);
 		printf("\t\t\t(Ronda %d)\n", ronda);
+		printf_color(-1);
 		ronda++;
 		bloqueig = 0;
+		//La primera iteracio comencem per el jugador de despres del que ha tirat el primer doble
 		for(jug = jugador_actual; (jug < partida_1.n_jugadors) && (!partida_1.acabada); jug++){ //Per cada jugador de la ronda i mentre no s'hagia acabat la partida
 		
+			printf_color(3);
 			printf("\t\t\t(Turn del jugador J%d)\n", jug);
+			printf_color(-1);
 			imprimir_partida(partida_1);
 			
 			//Busquem les tirades possibles que pot fer el jugador
 			tirades_possibles = retornar_tirades_possibles(partida_1.conjunts_jug[jug], partida_1.taula);
 			if(tirades_possibles.n_fitxes > 0){ //Si pot tirar
 				if(jug == 0 && partida_1.jugador_huma){
+					//Si el J0 es huma
 					print_conjunt_tirades(tirades_possibles);
 					fitxa_a_tirar = preguntar_n_en_rango("Fitxa a tirar: ", 0, tirades_possibles.n_fitxes-1);
 				}else{ 
-					//Funcio a bots.c, "inteligencia artificial"
+					//Pels bots
 					fitxa_a_tirar = retornar_millor_fitxa(partida_1, tirades_possibles);
 				}
-				moure_fitxa_taula(&partida_1, tirades_possibles.fitxes[fitxa_a_tirar], jug);
+				moure_fitxa_taula(&partida_1, tirades_possibles.fitxes[fitxa_a_tirar], jug); //Es mou la fitxa a la taula
 			}else{	//Si no pot tirar
 				bloqueig = bloqueig + no_puc_tirar(&partida_1, jug); //Si la pila és buida se li suma 1 a la variable bloqueig
 			}
@@ -68,12 +75,18 @@ void main(){
 			jugador_actual = 0; //Ara sempre començarem pel jugador 0
 		}
 	}
+	printf_color(5);
 	printf("PARTIDA ACABADA!\n");
+	printf_color(-1);
 	if(bloqueig == partida_1.n_jugadors){
-		printf("La partida s'ha bloquejat.\n");
+		printf_color(5);
+		printf("La partida s'ha bloquejat.\n"); //a la fase d'extras posarem que conti quin jugador te menys fitxes per saber el guanyador "parcial"
+		printf_color(-1);
 
-	}else{   
+	}else{
+		printf_color(5);
 		printf("\nHa guanyat: J%d\n", jug-1); //perque al for a la comprovacio sumara 1
+		printf_color(-1);
 	}
 }
 
